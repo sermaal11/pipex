@@ -6,7 +6,7 @@
 #    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/04 21:23:06 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/04 22:44:21 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = pipex
 # Compilador a utilizar (gcc, clang, etc)
 CC = gcc
 # Flags de compilacion (agregar los que se necesiten)
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = # -Wall -Wextra -Werror -g3
 # Directorio de los archivos objeto (no tocar)
 OBJDIR = objects
 # Archivos fuente (agregar los que se necesiten)
