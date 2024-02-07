@@ -6,7 +6,7 @@
 #    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/07 16:16:28 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/07 16:35:02 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,16 +75,12 @@ $(OBJDIR):
 libft:
 	@make -C $(LIBFT_DIR)
 
-# La regla libft_clean elimina los archivos objeto de la libft
-libft_clean:
-	@make -C $(LIBFT_DIR) clean
-
 # La regla libft_clean elimina los archivos objeto de la libft y el ejecutable
 libft_fclean:
 	@make -C $(LIBFT_DIR) fclean
 
 # La regla clean elimina todos los archivos objeto y el directorio
-clean: libft_clean
+clean: libft_fclean
 	@echo "$(RED)Eliminando archivos objeto de $(NAME)...$(RESET)"
 	rm -rf $(addprefix $(OBJDIR)/, $(OBJS))
 	@echo "$(GREEN)Todos los archivos objeto de $(NAME) han sido eliminados!$(RESET)"
@@ -97,7 +93,6 @@ fclean: clean libft_fclean
 	@echo "$(RED)Eliminando $(NAME)...$(RESET)"
 	rm -rf $(NAME)
 	@echo "$(GREEN)$(NAME) ha sido eliminado!$(RESET)"
-
 
 # La regla re elimina todo y compila nuevamente
 re: fclean all
