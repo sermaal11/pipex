@@ -6,7 +6,7 @@
 #    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/07 16:35:02 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/08 13:38:40 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,12 @@ NAME = pipex
 # Compilador a utilizar (gcc, clang, etc)
 CC = gcc
 # Flags de compilacion (agregar los que se necesiten)
-CFLAGS = # -Wall -Wextra -Werror -g3
+CFLAGS = -g3 -Wall -Wextra -Werror
 # Directorio de los archivos objeto (no tocar)
 OBJDIR = objects
 # Archivos fuente (agregar los que se necesiten)
-SRCS =	main.c 
+SRCS =	main.c \
+		ft_open_file.c
 
 #------------------------------------------------------------------------------#
 
@@ -98,7 +99,7 @@ fclean: clean libft_fclean
 re: fclean all
 
 # La regla git agrega, hace commit y hace push
-git:
+git: fclean
 	git add .
 	git status
 	@read -p "Quieres continuar? [y/n]: " answer; \
@@ -110,6 +111,9 @@ git:
 	else \
 		echo "$(BOLD_RED)(҂◡_◡) ¡¡¡Git push no realizado!!! (҂◡_◡)!!!$(RESET)"; \
 	fi
+
+run: re
+	./$(NAME) file1.txt "ls -l" "wc -l" file2.txt
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
 .PHONY: all clean fclean re git libft

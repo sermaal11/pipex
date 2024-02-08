@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:28:59 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/07 16:00:04 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/07 19:11:33 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 static char	*buffer_remainder(char *buff)
 {
+	int		buff_len;
 	int		i;
 	int		j;
 	char	*buff_rema;
 
+	buff_len = ft_strlen(buff);
 	i = 0;
 	while (buff[i] && buff[i] != '\n')
 		i++;
 	if (buff[i] == '\n')
 		i++;
-	buff_rema = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff_rema = (char *)malloc((buff_len) * sizeof(char));
 	if (buff_rema == NULL)
 	{
 		free(buff);
@@ -134,5 +136,6 @@ char	*ft_gnl(int fd)
 	buff = buffer_remainder(buff);
 	if (!buff)
 		free(buff);
+		buff = NULL;
 	return (line);
 }

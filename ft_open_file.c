@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/07 17:45:44 by sergio           ###   ########.fr       */
+/*   Created: 2024/02/07 17:33:09 by sergio            #+#    #+#             */
+/*   Updated: 2024/02/07 17:46:35 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+// ! Añadir a la librería libft la función ft_open_file.c
+// ! Añadir # include <fcntl.h> a libft/libft.h y borrar de pipex.h
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "./libft/libft.h"
+#include "pipex.h"
 
-int	ft_open_file(char *str);
+int	ft_open_file(char *str)
+{
+	int	fd;
 
-#endif
+	fd = open(str, O_RDONLY);
+	if (fd == -1)
+		perror("Error.\nError en la apertura de el archivo.\n");
+	return (fd);
+}

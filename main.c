@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/07 16:18:31 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/08 13:28:53 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 // ! $> ./pipex infile "grep a1" "wc -w" outfile
 // ! deberá hacer lo mismo que “<infile grep a1 | wc -w >outfile”
 
+// ! Revisar mi GNL con repo original subido a 42.
+
 int	main(int argc, char **argv)
 {
 	if (argc == 5)
@@ -37,12 +39,9 @@ int	main(int argc, char **argv)
 		ft_printf("comando1: %s\n", comando1);
 		ft_printf("comando2: %s\n", comando2);
 		ft_printf("archivo2: %s\n", archivo2);
-	return (0);
+		return (0);
 	}
-	else
-	{
-		perror("Error: invalid number of arguments");
-		exit(1);
-	}
+	perror("Error: invalid number of arguments");
+	//system("leaks -q pipex");
 	return (0);
 }
