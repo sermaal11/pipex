@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/09 14:14:00 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/09 22:30:36 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,15 @@
 
 int	main(int argc, char **argv)
 {
-	char	*archivo1 = argv[1];
-	char	*comando1 = argv[2];
-	char	*comando2 = argv[3];
-	char	*archivo2 = argv[4];
 	
+	//  Si el número de argumentos es diferente a 5 entonces imprime el mensaje
+	//  de error y termina el programa.
 	if (argc != 5)
 	{
 		perror("Error: invalid number of arguments");
 		system("leaks -q pipex");
 		return (0);
 	}
-
-	ft_printf("archivo1: %s\n", archivo1);
-	ft_printf("comando1: %s\n", comando1);
-	ft_printf("comando2: %s\n", comando2);
-	ft_printf("archivo2: %s\n", archivo2);
 	system("leaks -q pipex");
 	return (0);
 }

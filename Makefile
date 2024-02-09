@@ -6,7 +6,7 @@
 #    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/09 14:27:07 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/09 14:28:32 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ git: fclean
 	fi
 
 run: re
-	./$(NAME) file1.txt "ls -l" "wc -l" file2.txt
+	./$(NAME) infile "ls -l" "wc -l" outfile
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
 .PHONY: all clean fclean re git libft

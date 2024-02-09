@@ -335,7 +335,7 @@ Ejemplo:	int result = unlink("archivo.txt");
 
 --------------------------------------------------------------------------------
 
-wait:
+	:
 
 Descripción: Espera a que un proceso hijo termine.
 
