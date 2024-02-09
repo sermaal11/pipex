@@ -41,8 +41,9 @@ flags:	Modo de apertura del archivo. Pueden ser los siguientes valores:
 	- O_LARGEFILE: Abre el archivo como un archivo grande.
 mode:	Permisos del archivo en caso de que se cree.
 
-Valor de retorno: Descriptor de archivo en caso de éxito, -1 en caso de error de
-	apertura.
+Valor de retorno: Descriptor de archivo en caso de éxito, -1 en caso error.
+
+Libreria a incluir: #include <fcntl.h>
 
 Ejemplo: int fd = open("archivo.txt", O_RDWR | O_CREAT, 0666);
 
@@ -58,6 +59,8 @@ Parámetros:
 fd:	Descriptor de archivo a cerrar.
 
 Valor de retorno: 0 en caso de éxito, -1 en caso de error.
+
+Libreria a incluir: #include <unistd.h>
 
 Ejemplo: close(fd);
 
@@ -77,6 +80,8 @@ count:	Número de bytes a leer.
 Valor de retorno: Número de bytes leídos, 0 si se llegó al final del archivo, -1
 	en caso de error.
 
+Libreria a incluir: #include <unistd.h>
+
 Ejemplo:	char buf[100];
 			ssize_t bytes = read(fd, buf, 100);
 
@@ -95,6 +100,8 @@ count:	Número de bytes a escribir.
 
 Valor de retorno: Número de bytes escritos, -1 en caso de error.
 
+Libreria a incluir: #include <unistd.h>
+
 Ejemplo:	char buf[100] = "Hola, mundo!";
 			ssize_t bytes = write(fd, buf, 100);
 
@@ -111,6 +118,8 @@ size:	Tamaño del bloque de memoria a reservar.
 
 Valor de retorno: Puntero al bloque de memoria reservado, NULL en caso de error.
 
+Libreria a incluir: #include <stdlib.h>
+
 Ejemplo:	char *str = (char *)malloc(100);
 
 --------------------------------------------------------------------------------
@@ -125,6 +134,8 @@ Parámetros:
 ptr:	Puntero al bloque de memoria a liberar.
 
 Valor de retorno: Ninguno.
+
+Libreria a incluir: #include <stdlib.h>
 
 Ejemplo:	free(str);
 
@@ -141,6 +152,8 @@ s:	Mensaje a imprimir.
 
 Valor de retorno: Ninguno. Imprime el mensaje de error en stderr.
 
+Libreria a incluir: #include <stdio.h>
+
 Ejemplo:	perror("Error al abrir el archivo");
 
 --------------------------------------------------------------------------------
@@ -156,6 +169,8 @@ errnum:	Número de error. Si se pasa 0, se utiliza el valor de errno.
 
 Valor de retorno: Mensaje de error correspondiente al número de error. NULL si 
 	el número de error no es válido.
+
+Libreria a incluir: #include <string.h>
 
 Ejemplo:	char *error = strerror(errno);
 
@@ -177,6 +192,8 @@ mode:	Modo de acceso a comprobar. Puede ser uno de los siguientes valores:
 
 Valor de retorno: 0 en caso de éxito, -1 en caso de error.
 
+Libreria a incluir: #include <unistd.h>
+
 Ejemplo:	int result = access("archivo.txt", F_OK);
 
 --------------------------------------------------------------------------------
@@ -191,6 +208,8 @@ Parámetros:
 oldfd:	Descriptor de archivo a duplicar.
 
 Valor de retorno: Nuevo descriptor de archivo duplicado, -1 en caso de error.
+
+Libreria a incluir: #include <unistd.h>
 
 Ejemplo:	int newfd = dup(fd);
 
@@ -208,6 +227,8 @@ newfd:	Nuevo descriptor de archivo.
 
 Valor de retorno: Nuevo descriptor de archivo duplicado, -1 en caso de error.
 
+Libreria a incluir: #include <unistd.h>
+
 Ejemplo:	int newfd = dup2(fd, 3);
 
 --------------------------------------------------------------------------------
@@ -223,6 +244,8 @@ argv:		Argumentos del programa.
 envp:		Variables de entorno del programa.
 
 Valor de retorno: -1 en caso de error.
+
+Libreria a incluir: #include <unistd.h>
 
 Ejemplo 1:	char *args[] = {"ls", "-l", NULL};
 			char *env[] = {NULL};
@@ -253,6 +276,8 @@ status:	Estado de salida del proceso.
 
 Valor de retorno: Ninguno.
 
+Libreria a incluir: #include <stdlib.h>
+
 Ejemplo:	exit(0);
 
 --------------------------------------------------------------------------------
@@ -267,6 +292,8 @@ Parámetros: Ninguno.
 
 Valor de retorno: 0 en el proceso hijo, PID del proceso hijo en el proceso
 	padre, -1 en caso de error.
+
+Libreria a incluir: #include <unistd.h>
 
 Ejemplo:	pid_t pid = fork();
 
@@ -284,6 +311,8 @@ pipefd:	Arreglo de dos enteros en el que se almacenarán los descriptores de
 
 Valor de retorno: 0 en caso de éxito, -1 en caso de error.
 
+Libreria a incluir: #include <unistd.h>
+
 Ejemplo:	int fd[2];
 			pipe(fd);
 
@@ -300,6 +329,8 @@ pathname:	Ruta del archivo a eliminar.
 
 Valor de retorno: 0 en caso de éxito, -1 en caso de error.
 
+Libreria a incluir: #include <unistd.h>
+
 Ejemplo:	int result = unlink("archivo.txt");
 
 --------------------------------------------------------------------------------
@@ -314,6 +345,8 @@ Parámetros:
 status:	Estado de salida del proceso hijo.
 
 Valor de retorno: PID del proceso hijo que terminó, -1 en caso de error.
+
+Libreria a incluir: #include <sys/wait.h>
 
 Ejemplo:	pid_t pid = wait(&status);
 
@@ -333,6 +366,8 @@ options:	Opciones de espera. Puede ser uno de los siguientes valores:
 	- WUNTRACED: Espera si el proceso hijo ha sido detenido.
 
 Valor de retorno: PID del proceso hijo que terminó, -1 en caso de error.
+
+Libreria a incluir: #include <sys/wait.h>
 
 Ejemplo:	pid_t pid = waitpid(child_pid, &status, 0);
 

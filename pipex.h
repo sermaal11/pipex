@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/07 17:45:44 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:23:14 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <string.h>
+# include <sys/wait.h>
 # include "./libft/libft.h"
 
-int	ft_open_file(char *str);
+# define OUTFILE "outfile"
+# define INFILE "infile"
+# define PIPE_READ 0
+# define PIPE_WRITE 1
 
 #endif

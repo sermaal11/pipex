@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:28:59 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/07 19:11:33 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:13:36 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,9 @@ char	*ft_gnl(int fd)
 	line = take_line(buff);
 	buff = buffer_remainder(buff);
 	if (!buff)
+	{
 		free(buff);
 		buff = NULL;
+	}
 	return (line);
 }

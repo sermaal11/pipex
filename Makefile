@@ -6,7 +6,7 @@
 #    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/08 13:38:40 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/09 14:27:07 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ CFLAGS = -g3 -Wall -Wextra -Werror
 # Directorio de los archivos objeto (no tocar)
 OBJDIR = objects
 # Archivos fuente (agregar los que se necesiten)
-SRCS =	main.c \
-		ft_open_file.c
+SRCS =	main.c
 
 #------------------------------------------------------------------------------#
 
@@ -100,6 +99,7 @@ re: fclean all
 
 # La regla git agrega, hace commit y hace push
 git: fclean
+	rm -rf infile outfile
 	git add .
 	git status
 	@read -p "Quieres continuar? [y/n]: " answer; \
