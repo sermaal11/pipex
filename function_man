@@ -290,8 +290,8 @@ Uso: pid_t fork(void);
 
 Parámetros: Ninguno.
 
-Valor de retorno: 0 en el proceso hijo, PID del proceso hijo en el proceso
-	padre, -1 en caso de error.
+Valor de retorno: 0 en el proceso hijo, > 0 en el proceso padre y -1 en caso de
+error siendo el hijo NO creado.
 
 Libreria a incluir: #include <unistd.h>
 
@@ -335,7 +335,6 @@ Ejemplo:	int result = unlink("archivo.txt");
 
 --------------------------------------------------------------------------------
 
-	:
 
 Descripción: Espera a que un proceso hijo termine.
 
