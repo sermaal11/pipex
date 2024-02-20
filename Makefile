@@ -6,7 +6,7 @@
 #    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/20 14:50:28 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/20 17:30:21 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ CFLAGS = -g3 -Wall -Wextra -Werror
 # Directorio de los archivos objeto (no tocar)
 OBJDIR = objects
 # Archivos fuente (agregar los que se necesiten)
-SRCS =	main.c
+SRCS =	main.c \
+		ft_locate_path.c
 
 #------------------------------------------------------------------------------#
 
@@ -110,6 +111,10 @@ git: fclean
 	else \
 		echo "$(BOLD_RED)(҂◡_◡) ¡¡¡Git push no realizado!!! (҂◡_◡)!!!$(RESET)"; \
 	fi
+
+valgrind: re
+	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
+	valgrind --leak-check=full ./$(NAME) 1 2 3 4
 
 run: re
 	./$(NAME) 1 2 3 4

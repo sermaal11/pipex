@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/09 22:10:19 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/20 18:18:24 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@
 # include <sys/types.h>
 # include "./libft/libft.h"
 
-# define PIPE_READ 0
-# define PIPE_WRITE 1
+typedef struct s_data
+{
+	char **matrix_path;
+}		t_data;
 
-
+void	ft_locate_path(char **env, t_data *data);
+void	ft_free_path(char **sys_path);
 
 #endif
