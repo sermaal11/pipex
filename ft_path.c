@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_locate_path.c                                   :+:      :+:    :+:   */
+/*   ft_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:24:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/20 18:26:59 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:52:58 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_locate_path(char **env, t_data *data)
+void	ft_split_path(char **env, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (env[++i])
@@ -29,9 +29,9 @@ void	ft_locate_path(char **env, t_data *data)
 		data->matrix_path[0][i++] = '\0';
 }
 
-void ft_free_path(char **sys_path)
+void	ft_free_path(char **sys_path)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (sys_path[i])

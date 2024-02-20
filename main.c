@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/20 18:28:08 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:54:21 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	int row;
-	t_data data;
+	t_data	data;
 
 	if (argc != 5)
 	{
@@ -39,15 +38,16 @@ int	main(int argc, char **argv, char **env)
 	printf("%s\n", argv[2]);
 	printf("%s\n", argv[3]);
 	printf("%s\n", argv[4]);
-	ft_locate_path(env, &data);
+	ft_split_path(env, &data);
 
 	// Comprobacion del split del PATH
-	// row = 0;
-	// while(data.matrix_path[row])
-	// {
-	// 	printf("%s\n", data.matrix_path[row]);
-	// 	row++;
-	// }
+	int row;
+	row = 0;
+	while(data.matrix_path[row])
+	{
+		printf("%s\n", data.matrix_path[row]);
+		row++;
+	}
 
 	//Libero la matriz de sys_path
 	ft_free_path(data.matrix_path);
