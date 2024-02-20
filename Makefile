@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
+#    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/09 14:28:32 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/20 14:50:28 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,20 +86,19 @@ clean: libft_fclean
 	@echo "$(GREEN)Todos los archivos objeto de $(NAME) han sido eliminados!$(RESET)"
 	@echo "$(RED)Eliminando directorio de objetos de $(NAME)...$(RESET)"
 	rm -rf $(OBJDIR)
-	@echo "$(GREEN)Directorio de objetos de $(NAME) eliminado!$(RESET)"
+	@echo "$(GREEN)¡Directorio de objetos de $(NAME) eliminado!$(RESET)"
 
 # La regla fclean elimina todos los archivos objeto y el ejecutable
 fclean: clean libft_fclean
 	@echo "$(RED)Eliminando $(NAME)...$(RESET)"
 	rm -rf $(NAME)
-	@echo "$(GREEN)$(NAME) ha sido eliminado!$(RESET)"
+	@echo "$(GREEN)¡$(NAME) ha sido eliminado!$(RESET)"
 
 # La regla re elimina todo y compila nuevamente
 re: fclean all
 
 # La regla git agrega, hace commit y hace push
 git: fclean
-	rm -rf infile outfile
 	git add .
 	git status
 	@read -p "Quieres continuar? [y/n]: " answer; \
@@ -113,7 +112,7 @@ git: fclean
 	fi
 
 run: re
-	./$(NAME) infile "ls -l" "wc -l" outfile
+	./$(NAME) 1 2 3 4
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
 .PHONY: all clean fclean re git libft
