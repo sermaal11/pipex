@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/20 18:54:21 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:22:30 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ int	main(int argc, char **argv, char **env)
 		return (0);
 	}
 	// Para que no chille al no usar argv
-	printf("%s\n", argv[1]);
-	printf("%s\n", argv[2]);
-	printf("%s\n", argv[3]);
-	printf("%s\n", argv[4]);
+	printf("\nargv[1] = %s\n", argv[1]);
+	printf("argv[2] = %s\n", argv[2]);
+	printf("argv[3] = %s\n", argv[3]);
+	printf("argv[4] = %s\n\n", argv[4]);
+	
+	
+
 	ft_split_path(env, &data);
 
 	// Comprobacion del split del PATH
