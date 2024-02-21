@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/21 19:17:16 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:44:45 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv, char **env)
 
 	if (argc != 5)
 		ft_error("Error: invalid number of arguments\n");
+	ft_memset(&data, 0, sizeof(data));
 	ft_split_path(&data, env);
 	ft_pipe(&data);
 	ft_child_one(&data, argv[1], argv[2], env);

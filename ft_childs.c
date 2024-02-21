@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:49:27 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 19:19:29 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:35:35 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_child_one(t_data *data, char *file, char *command, char **env)
 {
-	ft_search_valid_path(command, data);
 	data->pid_child_one = fork();
 	if (data->pid_child_one == 0)
 	{
+		ft_search_valid_path(command, data);
 		data->infile_fd = open(file, O_RDONLY);
 		if (data->infile_fd == -1)
 			ft_error("Error");
@@ -26,6 +26,7 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 		close(data->infile_fd);
 		close(data->pipe_fd[R]);
 		execve(data->valid_path, data->matrix_command, env);
+		ft_free(data);
 	}
 	else if (data->pid_child_one < 0)
 		ft_error("Error: fork not created\n");
@@ -33,10 +34,10 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 
 void	ft_child_two(t_data *data, char *file, char *command, char **env)
 {
-	ft_search_valid_path(command, data);
 	data->pid_child_two = fork();
 	if (data->pid_child_two == 0)
 	{
+		ft_search_valid_path(command, data);
 		data->outfile_fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (data->outfile_fd == -1)
 			perror("Error");
@@ -45,6 +46,7 @@ void	ft_child_two(t_data *data, char *file, char *command, char **env)
 		close(data->outfile_fd);
 		close(data->pipe_fd[W]);
 		execve(data->valid_path, data->matrix_command, env);
+		ft_free(data);
 	}
 	else if (data->pid_child_two < 0)
 		ft_error("Error: fork not created\n");

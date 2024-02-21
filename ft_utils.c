@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 18:45:21 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:38:31 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	ft_free_matrix(char **sys_path)
 	int	i;
 
 	i = 0;
+	if (!sys_path)
+		return ;
 	while (sys_path[i])
 	{
 		free(sys_path[i]);
