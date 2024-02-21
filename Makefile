@@ -6,7 +6,7 @@
 #    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/21 15:12:48 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/21 18:07:59 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,8 +117,13 @@ valgrind: re
 	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
 	valgrind --leak-check=full ./$(NAME) infile "ls -l" "wc -l" outfile
 
+valgrind2: re
+	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
+	valgrind --show-leak-kinds=all ./$(NAME) infile "ls -l" "wc -l" outfile
+
+
 run: re
-	./$(NAME) infile "ls -l" "wc -l" outfile
+	./$(NAME) infile "cat" "wc -l" outfile
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
 .PHONY: all clean fclean re git libft

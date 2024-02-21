@@ -6,41 +6,58 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/21 15:29:34 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:10:32 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// ! $> ./pipex infile "ls -l" "wc -l" outfile
-// ! deberá hacer lo mismo que “<infile ls -l | wc -l >outfile”
-
-// ! $> ./pipex infile "grep a1" "wc -w" outfile
-// ! deberá hacer lo mismo que “<infile grep a1 | wc -w >outfile”
-
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
 
-	//Control de solo 5 argumentos pasados por input
 	if (argc != 5)
 		ft_error("Error: invalid number of arguments\n");
-	// ! Para que no chille al no usar argv
-	printf("\nargv[1] = %s\n", argv[1]);
-	printf("argv[2] = %s\n", argv[2]);
-	printf("argv[3] = %s\n", argv[3]);
-	printf("argv[4] = %s\n\n", argv[4]);
-	
 	ft_split_path(env, &data);
 	ft_search_valid_path(argv[2], &data);
-	
 	ft_pipe(&data);
+
+	data.pid_child_one = fork();
+	if (data.pid_child_one == 0)
+	{
+		printf("PID del hijo: %d\n", getpid());
+		data.infile_fd = open(argv[1], O_RDONLY);
+		if (data.infile_fd == -1)
+			perror("Error");
+		dup2(data.infile_fd, STDIN_FILENO);
+		dup2(data.pipe_fd[W], STDOUT_FILENO);
+		close(data.infile_fd);
+		close(data.pipe_fd[R]);
+		execve(data.valid_path, data.matrix_command, env);
+	}
+	else if (data.pid_child_one < 0)
+		ft_error("Error: fork not created\n");
+
+	data.pid_child_two = fork();
+	if (data.pid_child_two == 0)
+	{
+		printf("PID del hijo: %d\n", getpid());
+		data.outfile_fd = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (data.outfile_fd == -1)
+			perror("Error");
+		dup2(data.pipe_fd[R], STDIN_FILENO);
+		dup2(data.outfile_fd, STDOUT_FILENO);
+		close(data.outfile_fd);
+		close(data.pipe_fd[W]);
+		execve(data.valid_path, data.matrix_command, env);
+	}
+	else if (data.pid_child_two < 0)
+		ft_error("Error: fork not created\n");
 	
-	//Libero la matrizes del split
-	//free(data.valid_path);
-	ft_free_matrix(data.matrix_command);
-	free(data.matrix_command);
-	ft_free_matrix(data.matrix_path);
-	free(data.matrix_path);
+	close(data.pipe_fd[0]);
+	close(data.pipe_fd[1]);
+	waitpid(data.pid_child_one, NULL, 0);
+	waitpid(data.pid_child_two, NULL, 0);
+	ft_free(&data);
 	return (0);
 }

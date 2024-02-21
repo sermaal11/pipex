@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:24:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 15:15:53 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:55:37 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	ft_search_valid_path(char *command, t_data *data)
 		if (access(data->matrix_joined_path, X_OK) == 0)
 		{
 			data->valid_path = data->matrix_joined_path;
-			// ! compruebo que me encuentra el valid_path
-			printf("path valido -> %s\n", data->valid_path);
+			free(temp_path);
+			return ;
 		}
 		free(data->matrix_joined_path);
 		i++;
