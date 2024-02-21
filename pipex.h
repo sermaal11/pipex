@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/20 19:18:52 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:40:46 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@
 typedef struct	s_data
 {
 	char	**matrix_path;
+	char	*matrix_joined_path;
+	char	**matrix_command;
+	char	*valid_path;
 }				t_data;
 
 void	ft_split_path(char **env, t_data *data);
-void	ft_free_path(char **sys_path);
+void	ft_free_matrix(char **sys_path);
+void	ft_search_valid_path(char *command, t_data *data);
 
 #endif
