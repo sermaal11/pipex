@@ -6,7 +6,7 @@
 #    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/21 15:01:57 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/21 15:12:48 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ CFLAGS = -g3 -Wall -Wextra -Werror
 OBJDIR = objects
 # Archivos fuente (agregar los que se necesiten)
 SRCS =	main.c \
-		ft_path.c
+		ft_path.c \
+		ft_utils.c
 
 #------------------------------------------------------------------------------#
 

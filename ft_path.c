@@ -6,24 +6,11 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:24:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 14:57:34 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:15:53 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_free_matrix(char **sys_path)
-{
-	int	i;
-
-	i = 0;
-	while (sys_path[i])
-	{
-		free(sys_path[i]);
-		sys_path[i] = NULL;
-		i++;
-	}
-}
 
 void	ft_split_path(char **env, t_data *data)
 {

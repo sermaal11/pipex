@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:24:14 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/21 14:58:05 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:29:34 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int	main(int argc, char **argv, char **env)
 
 	//Control de solo 5 argumentos pasados por input
 	if (argc != 5)
-	{
-		perror("Error: invalid number of arguments");
-		return (0);
-	}
+		ft_error("Error: invalid number of arguments\n");
 	// ! Para que no chille al no usar argv
 	printf("\nargv[1] = %s\n", argv[1]);
 	printf("argv[2] = %s\n", argv[2]);
@@ -36,6 +33,8 @@ int	main(int argc, char **argv, char **env)
 	
 	ft_split_path(env, &data);
 	ft_search_valid_path(argv[2], &data);
+	
+	ft_pipe(&data);
 	
 	//Libero la matrizes del split
 	//free(data.valid_path);
