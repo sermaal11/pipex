@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 20:38:31 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:54:32 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	ft_error(char *msg)
 	exit(1);
 }
 
-void	ft_free_matrix(char **sys_path)
+void	ft_free_matrix(char **matrix)
 {
 	int	i;
 
 	i = 0;
-	if (!sys_path)
+	if (!matrix)
 		return ;
-	while (sys_path[i])
+	while (matrix[i])
 	{
-		free(sys_path[i]);
-		sys_path[i] = NULL;
+		free(matrix[i]);
+		matrix[i] = NULL;
 		i++;
 	}
 }
