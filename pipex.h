@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/21 18:06:03 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:18:20 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ typedef struct s_data
 	int		pid_child_two;
 }				t_data;
 
-void	ft_split_path(char **env, t_data *data);
-void	ft_free_matrix(char **sys_path);
+void	ft_child_one(t_data *data, char *file, char *command, char **env);
+void	ft_child_two(t_data *data, char *file, char *command, char **env);
 void	ft_search_valid_path(char *command, t_data *data);
-void	ft_error(char *msg);
+void	ft_split_path(t_data *data, char **env);
+void	ft_free_matrix(char **sys_path);
+void	ft_close_n_wait(t_data *data);
 void	ft_pipe(t_data *data);
 void	ft_free(t_data *data);
+void	ft_error(char *msg);
 
 #endif

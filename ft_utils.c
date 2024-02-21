@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 18:06:37 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:45:21 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,12 @@ void	ft_free(t_data *data)
 	free(data->matrix_command);
 	ft_free_matrix(data->matrix_path);
 	free(data->matrix_path);
+}
+
+void	ft_close_n_wait(t_data *data)
+{
+	close(data->pipe_fd[0]);
+	close(data->pipe_fd[1]);
+	waitpid(data->pid_child_one, NULL, 0);
+	waitpid(data->pid_child_two, NULL, 0);
 }

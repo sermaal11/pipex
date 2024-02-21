@@ -6,7 +6,7 @@
 #    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/21 18:07:59 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/21 19:20:48 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ OBJDIR = objects
 # Archivos fuente (agregar los que se necesiten)
 SRCS =	main.c \
 		ft_path.c \
-		ft_utils.c
+		ft_utils.c \
+		ft_childs.c
 
 #------------------------------------------------------------------------------#
 

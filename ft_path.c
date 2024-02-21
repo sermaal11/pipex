@@ -6,13 +6,13 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:24:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 17:55:37 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:17:01 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_split_path(char **env, t_data *data)
+void	ft_split_path(t_data *data, char **env)
 {
 	int	i;
 
@@ -30,6 +30,11 @@ void	ft_search_valid_path(char *command, t_data *data)
 	char	*temp_path;
 
 	data->matrix_command = ft_split(command, ' ');
+	if (access(data->matrix_command[0], X_OK) == 0)
+	{
+		data->valid_path = ft_strdup(data->matrix_command[0]);
+		return ;
+	}
 	temp_path = ft_strjoin("/", data->matrix_command[0]);
 	i = 0;
 	while (data->matrix_path[i])
