@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/22 10:56:10 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:38:27 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_data
 
 	int		pid_child_one;
 	int		pid_child_two;
+
+	int		status;
 }				t_data;
 
 // ft_childs.c
@@ -56,7 +58,7 @@ void	ft_split_path(t_data *data, char **env);
 // ft_free_matrix.c libera la memoria de la matriz.
 void	ft_free_matrix(char **matrix);
 // ft_close_n_wait.c cierra los pipes y espera a que los hijos terminen.
-int	ft_close_n_wait(t_data *data);
+int		ft_close_n_wait(t_data *data);
 // ft_pipe.c crea un pipe.
 void	ft_pipe(t_data *data);
 // ft_free.c libera la memoria.
