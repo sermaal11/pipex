@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/22 15:38:27 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:17:45 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_data
 	int		pid_child_two;
 
 	int		status;
+	char	*temp_path;
 }				t_data;
 
 // ft_childs.c
@@ -64,6 +65,6 @@ void	ft_pipe(t_data *data);
 // ft_free.c libera la memoria.
 void	ft_free(t_data *data);
 // ft_error.c imprime un mensaje de error y termina el programa.
-void	ft_error(char *msg);
+void	ft_error(char *msg, int n_error);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 10:56:32 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:20:40 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ En la función ft_error hacemos lo siguiente:
 3.	Terminamos el programa.
 */
 
-void	ft_error(char *msg)
+void	ft_error(char *msg, int n_error)
 {
 	perror(msg);
-	exit(1);
+	exit(n_error);
 }
 
 /*

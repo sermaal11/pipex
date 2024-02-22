@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:24:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 15:58:14 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:19:24 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,31 @@ En la función ft_search_valid_path hacemos lo siguiente:
 8.	Liberamos la variable temp_path.
 */
 
-void	ft_search_valid_path(char *command, t_data *data)
+void	ft_search_valid_path(char *command, t_data *d)
 {
 	int		i;
-	char	*temp_path;
 
-	data->matrix_command = ft_split(command, ' ');
-	if (access(data->matrix_command[0], X_OK) == 0 && data->matrix_command[0][0] == '/')
+	d->matrix_command = ft_split(command, ' ');
+	if (access(*d->matrix_command, X_OK) == 0 && **d->matrix_command == '/')
 	{
-		data->valid_path = ft_strdup(data->matrix_command[0]);
+		d->valid_path = ft_strdup(d->matrix_command[0]);
 		return ;
 	}
-	else if (access(data->matrix_command[0], X_OK) != 0 && data->matrix_command[0][0] == '/')
-	{
-		exit(1);
-	}
-	temp_path = ft_strjoin("/", data->matrix_command[0]);
+	if (access(*d->matrix_command, X_OK) != 0 && **d->matrix_command == '/')
+		ft_error("Error", 127);
+	d->temp_path = ft_strjoin("/", d->matrix_command[0]);
 	i = 0;
-	while (data->matrix_path[i])
+	while (d->matrix_path[i])
 	{
-		data->matrix_joined_path = ft_strjoin(data->matrix_path[i], temp_path);
-		if (access(data->matrix_joined_path, X_OK) == 0)
+		d->matrix_joined_path = ft_strjoin(d->matrix_path[i++], d->temp_path);
+		if (access(d->matrix_joined_path, X_OK) == 0)
 		{
-			data->valid_path = data->matrix_joined_path;
-			free(temp_path);
+			d->valid_path = d->matrix_joined_path;
+			free(d->temp_path);
 			return ;
 		}
-		free(data->matrix_joined_path);
-		i++;
+		free(d->matrix_joined_path);
 	}
-	ft_error("Command not found");
-	free(temp_path);
+	ft_error("Command not found", 1);
+	free(d->temp_path);
 }

@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:49:27 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 10:59:15 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:07:52 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 		ft_search_valid_path(command, data);
 		data->infile_fd = open(file, O_RDONLY);
 		if (data->infile_fd == -1)
-			ft_error("Error");
+			ft_error("Error", 1);
 		dup2(data->infile_fd, STDIN_FILENO);
 		dup2(data->pipe_fd[W], STDOUT_FILENO);
 		close(data->infile_fd);
@@ -50,7 +50,7 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 		exit(127);
 	}
 	else if (data->pid_child_one < 0)
-		ft_error("Error: fork not created");
+		ft_error("Error: fork not created", 1);
 }
 
 /*
@@ -91,5 +91,5 @@ void	ft_child_two(t_data *data, char *file, char *command, char **env)
 		exit(127);
 	}
 	else if (data->pid_child_two < 0)
-		ft_error("Error: fork not created\n");
+		ft_error("Error: fork not created", 1);
 }
