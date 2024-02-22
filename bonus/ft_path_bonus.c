@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_path_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:33:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 18:30:51 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:33:27 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,4 @@ void	ft_search_valid_path(char *command, t_data *d)
 	}
 	ft_error("Command not found", 1);
 	free(d->temp_path);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_childs_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:36:14 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 18:55:18 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:33:57 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_child_last(t_data *data, char *file, char *cmd, char **env)
 		ft_error("Error: fork not created", 1);
 }
 
-void	ft_chiled_middle(t_data *data, int iter, char *cmd, char **env)
-{
+// void	ft_chiled_middle(t_data *data, int iter, char *cmd, char **env)
+// {
 	
-}
+// }
