@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_childs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:49:27 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 23:10:52 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/22 10:59:15 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 		close(data->pipe_fd[R]);
 		execve(data->valid_path, data->matrix_command, env);
 		ft_free(data);
+		exit(127);
 	}
 	else if (data->pid_child_one < 0)
-		ft_error("Error: fork not created\n");
+		ft_error("Error: fork not created");
 }
 
 /*
@@ -87,6 +88,7 @@ void	ft_child_two(t_data *data, char *file, char *command, char **env)
 		close(data->pipe_fd[W]);
 		execve(data->valid_path, data->matrix_command, env);
 		ft_free(data);
+		exit(127);
 	}
 	else if (data->pid_child_two < 0)
 		ft_error("Error: fork not created\n");

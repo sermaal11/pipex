@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/21 23:16:05 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/22 10:56:10 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <stdio.h>
+# include "./libft/libft.h"
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <string.h>
-# include <sys/wait.h>
-# include <sys/types.h>
-# include "./libft/libft.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 # define R 0
 # define W 1
 
 typedef struct s_data
 {
-	char	**matrix_path;
 	char	*matrix_joined_path;
 	char	**matrix_command;
+	char	**matrix_path;
 	char	*valid_path;
 
+	int		outfile_fd;
 	int		pipe_fd[2];
 	int		infile_fd;
-	int		outfile_fd;
 
 	int		pid_child_one;
 	int		pid_child_two;
@@ -56,7 +56,7 @@ void	ft_split_path(t_data *data, char **env);
 // ft_free_matrix.c libera la memoria de la matriz.
 void	ft_free_matrix(char **matrix);
 // ft_close_n_wait.c cierra los pipes y espera a que los hijos terminen.
-void	ft_close_n_wait(t_data *data);
+int	ft_close_n_wait(t_data *data);
 // ft_pipe.c crea un pipe.
 void	ft_pipe(t_data *data);
 // ft_free.c libera la memoria.

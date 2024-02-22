@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 01:12:05 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/22 10:56:32 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,13 @@ En la función ft_close_n_wait hacemos lo siguiente:
 5.	Esperamos a que el segundo hijo termine.
 */
 
-void	ft_close_n_wait(t_data *data)
+int	ft_close_n_wait(t_data *data)
 {
+	int	status;
+	
 	close(data->pipe_fd[0]);
 	close(data->pipe_fd[1]);
 	waitpid(data->pid_child_one, NULL, 0);
-	waitpid(data->pid_child_two, NULL, 0);
+	waitpid(data->pid_child_two, &status, 0);
+	return (status);
 }

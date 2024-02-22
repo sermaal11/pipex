@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
+#    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/21 23:52:33 by sergio           ###   ########.fr        #
+#    Updated: 2024/02/22 11:05:20 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,24 @@ fclean: clean libft_fclean
 # La regla re elimina todo y compila nuevamente
 re: fclean all
 
+# La regla init inicializa el proyecto
+init:
+	@echo "$(CYAN)Creando archivo .gitignore...$(RESET)"
+	@echo "$(CYAN)Añadiendo .DS_Store, .vscode, .dSYM y .o al archivo .gitignore...$(RESET)"
+	@echo "\n"
+	@echo ".DS_Store" > .gitignore
+	@echo ".vscode" >> .gitignore
+	@echo "*.dSYM" >> .gitignore
+	@echo "*.o" >> .gitignore
+	@read -p "Quieres ver los comandos de los que dispone este Makefile? [y/n]: " answer; \
+	if [ "$$answer" = "y" ]; then \
+		make help; \
+		read -p "Para continuar, presiona enter..."; \
+	else \
+		echo "Puedes ver los comandos con 'make help' en cualquier momento"; \
+	fi
+	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡Proyecto inicializado, ya puedes empezar a completar el Makefile!!! (⌐■_■)$(RESET)"
+
 # La regla git agrega, hace commit y hace push
 git: fclean
 	git add .
@@ -114,15 +132,7 @@ git: fclean
 		echo "$(BOLD_RED)(҂◡_◡) ¡¡¡Git push no realizado!!! (҂◡_◡)!!!$(RESET)"; \
 	fi
 
-valgrind: re
-	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
-	valgrind --leak-check=full -s --track-origins=yes ./$(NAME) infile "ls -l" "wc -l" outfile
-
-valgrind2: re
-	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
-	valgrind --show-leak-kinds=all ./$(NAME) infile "cat" "wc -l" outfile
-
-# La regla test realiza 10 pruebas
+# La regla recompila y ejecuta
 test: re
 	@read -p "¿Cuántos argumentos quieres introducir? " num_args; \
 	for ((i=1; i<=num_args; i++)); do \
@@ -131,8 +141,29 @@ test: re
 	done; \
 	./$(NAME)$$args
 
+# La regla help muestra las reglas del make
+help:
+	@echo "\n"
+	@echo "$(BOLD_PURPLE)Reglas incluidas en el Makefile:$(RESET)"
+	@echo "\n"
+	@echo "  $(CYAN)all$(RESET)	-> Compila el ejecutable"
+	@echo "  $(CYAN)clean$(RESET)	-> Elimina los archivos objeto"
+	@echo "  $(CYAN)fclean$(RESET)-> Elimina los archivos objeto y el ejecutable"
+	@echo "  $(CYAN)re$(RESET)	-> Elimina todo y compila nuevamente"
+	@echo "  $(CYAN)init$(RESET)	-> Inicializa el proyecto"
+	@echo "  $(CYAN)test$(RESET)	-> Compila y ejecuta el promgrama con los argumentos que le pases"
+	@echo "  $(CYAN)git$(RESET)	-> Agrega, hace commit y hace push"
+	@echo "  $(CYAN)help$(RESET)	-> Muestra las reglas del make"
+	@echo "\n"
 
 
+valgrind: re
+	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
+	valgrind --leak-check=full ./$(NAME) infile "ls -l" "wc -l" outfile
+
+valgrind2: re
+	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
+	valgrind --show-leak-kinds=all ./$(NAME) infile "cat" "wc -l" outfile
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
 .PHONY: all clean fclean re git libft
