@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:24:09 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 16:19:24 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:11:39 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ void	ft_search_valid_path(char *command, t_data *d)
 {
 	int		i;
 
-	d->matrix_command = ft_split(command, ' ');
-	if (access(*d->matrix_command, X_OK) == 0 && **d->matrix_command == '/')
+	d->matrix_cmd = ft_split(command, ' ');
+	if (access(*d->matrix_cmd, X_OK) == 0 && **d->matrix_cmd == '/')
 	{
-		d->valid_path = ft_strdup(d->matrix_command[0]);
+		d->valid_path = ft_strdup(d->matrix_cmd[0]);
 		return ;
 	}
-	if (access(*d->matrix_command, X_OK) != 0 && **d->matrix_command == '/')
+	if (access(*d->matrix_cmd, X_OK) != 0 && ft_strrchr(*d->matrix_cmd, '/'))
 		ft_error("Error", 127);
-	d->temp_path = ft_strjoin("/", d->matrix_command[0]);
+	d->temp_path = ft_strjoin("/", d->matrix_cmd[0]);
 	i = 0;
 	while (d->matrix_path[i])
 	{

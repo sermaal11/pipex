@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:31:18 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 15:41:26 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:45:03 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@ int main(int argc, char **argv, char **env)
 	t_data	data;
 
 	ft_memset(&data, 0, sizeof(data));
+	
+	//Contamos cuantos comandos nos han introducido
+	//Estructura
+	// ./	infile	cmd1 cmd2 cmd3 cmd4 ... cdmN
 	
 }

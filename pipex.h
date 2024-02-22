@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/22 16:17:45 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:11:52 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 typedef struct s_data
 {
 	char	*matrix_joined_path;
-	char	**matrix_command;
 	char	**matrix_path;
+	char	**matrix_cmd;
 	char	*valid_path;
 
 	int		outfile_fd;
