@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:49:27 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 16:07:52 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:20:39 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 		dup2(data->pipe_fd[W], STDOUT_FILENO);
 		close(data->infile_fd);
 		close(data->pipe_fd[R]);
-		execve(data->valid_path, data->matrix_command, env);
+		execve(data->valid_path, data->matrix_cmd, env);
 		ft_free(data);
 		exit(127);
 	}
@@ -86,7 +86,7 @@ void	ft_child_two(t_data *data, char *file, char *command, char **env)
 		dup2(data->outfile_fd, STDOUT_FILENO);
 		close(data->outfile_fd);
 		close(data->pipe_fd[W]);
-		execve(data->valid_path, data->matrix_command, env);
+		execve(data->valid_path, data->matrix_cmd, env);
 		ft_free(data);
 		exit(127);
 	}

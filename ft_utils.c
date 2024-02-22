@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 16:20:40 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:20:13 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ En la función ft_free hacemos lo siguiente:
 void	ft_free(t_data *data)
 {
 	free(data->valid_path);
-	ft_free_matrix(data->matrix_command);
-	free(data->matrix_command);
+	ft_free_matrix(data->matrix_cmd);
+	free(data->matrix_cmd);
 	ft_free_matrix(data->matrix_path);
 	free(data->matrix_path);
 }
