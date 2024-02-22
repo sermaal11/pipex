@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_childs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:49:27 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 20:56:00 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:10:52 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+/*
+En la función ft_child_one hacemos lo siguiente:
+1.	Recibimos un puntero a una estructura de tipo t_data llamada data, un
+	puntero a un char llamado file, un puntero a un char llamado command y un
+	puntero a un puntero de tipo char llamado env.
+2.	Creamos un proceso hijo mediante la función fork.
+3.	Si el proceso hijo se ha creado correctamente, abrimos el archivo file en
+	modo lectura.
+4.	Si el archivo no se ha abierto correctamente, llamamos a la función ft_error
+	que imprime un mensaje de error y termina el programa.
+5.	Redirigimos la entrada estándar al archivo file.
+6.	Redirigimos la salida estándar al pipe.
+7.	Cerramos el archivo file.
+8.	Cerramos el pipe en modo lectura.
+9.	Ejecutamos el comando con la función execve.
+10.	Liberamos la memoria.
+11.	Si el proceso hijo no se ha creado correctamente, llamamos a la función
+	ft_error que imprime un mensaje de error y termina el programa.
+*/
 
 void	ft_child_one(t_data *data, char *file, char *command, char **env)
 {
@@ -31,6 +51,26 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 	else if (data->pid_child_one < 0)
 		ft_error("Error: fork not created\n");
 }
+
+/*
+En la función ft_child_two hacemos lo siguiente:
+1.	Recibimos un puntero a una estructura de tipo t_data llamada data, un
+	puntero a un char llamado file, un puntero a un char llamado command y un
+	puntero a un puntero de tipo char llamado env.
+2.	Creamos un proceso hijo mediante la función fork.
+3.	Si el proceso hijo se ha creado correctamente, abrimos el archivo file en
+	modo lectura y escritura, si el archivo no existe, lo creamos.
+4.	Si el archivo no se ha abierto correctamente, llamamos a la función ft_error
+	que imprime un mensaje de error y termina el programa.
+5.	Redirigimos la entrada estándar al pipe.
+6.	Redirigimos la salida estándar al archivo file.
+7.	Cerramos el archivo file.
+8.	Cerramos el pipe en modo escritura.
+9.	Ejecutamos el comando con la función execve.
+10.	Liberamos la memoria.
+11.	Si el proceso hijo no se ha creado correctamente, llamamos a la función
+	ft_error que imprime un mensaje de error y termina el programa.
+*/
 
 void	ft_child_two(t_data *data, char *file, char *command, char **env)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/21 20:43:47 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/21 23:52:33 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,9 +122,17 @@ valgrind2: re
 	@echo "$(CYAN)Ejecutando Valgrind en $(NAME)...$(RESET)"
 	valgrind --show-leak-kinds=all ./$(NAME) infile "cat" "wc -l" outfile
 
+# La regla test realiza 10 pruebas
+test: re
+	@read -p "¿Cuántos argumentos quieres introducir? " num_args; \
+	for ((i=1; i<=num_args; i++)); do \
+		read -p "Introduce el argumento $$i: " arg; \
+		args+=" $$arg"; \
+	done; \
+	./$(NAME)$$args
 
-run: re
-	./$(NAME) infile "cat" "wc -l" outfile
+
+
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean o re
 .PHONY: all clean fclean re git libft
