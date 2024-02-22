@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/21 23:13:16 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/22 01:12:05 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ft_error(char *msg)
 En la función ft_free_matrix hacemos lo siguiente:
 1.	Recibimos un puntero a un puntero de tipo char llamado matrix.
 2.	Declaramos una variable de tipo entero llamada i e inicializamos en 0.
-3.	Recorremos la matriz, liberamos la memoria y asignamos NULL.
+3.	Si la matriz no existe, retornamos.
+4.	Recorremos la matriz, liberamos la memoria y asignamos NULL.
 */
 
 void	ft_free_matrix(char **matrix)
