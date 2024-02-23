@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: sergio <sergio@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/22 18:24:31 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/23 15:08:08 by sergio           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,22 +18,31 @@
 
 # Nombre del ejecutable a crear (sin espacios)
 NAME = pipex
+NAME_BONUS = pipex_bonus
 # Compilador a utilizar (gcc, clang, etc)
 CC = gcc
 # Flags de compilacion (agregar los que se necesiten)
 CFLAGS = -g3 -Wall -Wextra -Werror
 # Directorio de los archivos objeto (no tocar)
 OBJDIR = objects
+OBJDIR_BONUS = objects_bonus
 # Archivos fuente (agregar los que se necesiten)
 SRCS =	main.c \
 		ft_path.c \
 		ft_utils.c \
 		ft_childs.c
 
+SRCS_BONUS =	main_bonus.c \
+				ft_utils_bonus.c \
+				ft_path_bonus.c \
+				ft_child_bonus.c
+
+
 #------------------------------------------------------------------------------#
 
 # Archivos objeto (no tocar)
 OBJS = $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 # Directorio de las libft. Si no se usa, comentar la linea
 LIBFT_DIR = ./libft
 # Librerias a utilizar. Si no se usa, comentar la linea
@@ -53,7 +62,7 @@ BOLD_RED = \033[1;31m
 
 # Reglas del make (no tocar)
 
-# $@ -> nombre del objetivo (en este caso, el nombre del ejecutable)
+# La regla all compila el ejecutable con los archivos objeto creados
 all: libft $(NAME)
 	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡$(NAME) compilado con exito!!! (⌐■_■)$(RESET)"
 
@@ -74,6 +83,24 @@ $(OBJDIR):
 	@echo "$(GREEN)Directorio de objetos de $(NAME) creado!$(RESET)"
 	@echo "$(CYAN)Creando objetos de $(NAME)...$(RESET)"
 
+# La regla bonus compila el ejecutable con los archivos objeto creados
+bonus: libft $(NAME_BONUS)
+	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡$(NAME_BONUS) compilado con exito!!! (⌐■_■)$(RESET)"
+
+$(NAME_BONUS): $(addprefix $(OBJDIR_BONUS)/, $(OBJS_BONUS))
+	@echo "$(GREEN)Objetos creados!$(RESET)"
+	@echo "$(CYAN)Compilando $(NAME_BONUS)...$(RESET)"
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)
+
+$(OBJDIR_BONUS)/%.o : %.c | $(OBJDIR_BONUS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR_BONUS):
+	@echo "$(CYAN)Creando directorio de objetos de $(NAME_BONUS)...$(RESET)"
+	mkdir $(OBJDIR_BONUS)
+	@echo "$(GREEN)Directorio de objetos de $(NAME_BONUS) creado!$(RESET)"
+	@echo "$(CYAN)Creando objetos de $(NAME_BONUS)...$(RESET)"
+
 # La regla libft compila la libft
 libft:
 	@make -C $(LIBFT_DIR)
@@ -86,19 +113,22 @@ libft_fclean:
 clean: libft_fclean
 	@echo "$(RED)Eliminando archivos objeto de $(NAME)...$(RESET)"
 	rm -rf $(addprefix $(OBJDIR)/, $(OBJS))
+	rm -rf $(addprefix $(OBJDIR_BONUS)/, $(OBJS_BONUS))
 	@echo "$(GREEN)Todos los archivos objeto de $(NAME) han sido eliminados!$(RESET)"
 	@echo "$(RED)Eliminando directorio de objetos de $(NAME)...$(RESET)"
 	rm -rf $(OBJDIR)
+	rm -rf $(OBJDIR_BONUS)
 	@echo "$(GREEN)¡Directorio de objetos de $(NAME) eliminado!$(RESET)"
 
 # La regla fclean elimina todos los archivos objeto y el ejecutable
 fclean: clean libft_fclean
 	@echo "$(RED)Eliminando $(NAME)...$(RESET)"
 	rm -rf $(NAME)
+	rm -rf $(NAME_BONUS)
 	@echo "$(GREEN)¡$(NAME) ha sido eliminado!$(RESET)"
 
 # La regla re elimina todo y compila nuevamente
-re: fclean all
+re: fclean all bonus
 
 # La regla init inicializa el proyecto
 init:
@@ -147,6 +177,7 @@ help:
 	@echo "$(BOLD_PURPLE)Reglas incluidas en el Makefile:$(RESET)"
 	@echo "\n"
 	@echo "  $(CYAN)all$(RESET)	-> Compila el ejecutable"
+	@echo "  $(CYAN)bonus$(RESET)	-> Compila el ejecutable bonus"
 	@echo "  $(CYAN)clean$(RESET)	-> Elimina los archivos objeto"
 	@echo "  $(CYAN)fclean$(RESET)-> Elimina los archivos objeto y el ejecutable"
 	@echo "  $(CYAN)re$(RESET)	-> Elimina todo y compila nuevamente"

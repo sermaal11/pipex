@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/22 18:35:30 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:01:58 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,27 @@ typedef struct s_data
 	int		outfile_fd;
 	int		pipe_fd[2];
 	int		infile_fd;
+	int		tmp_fd;
 
 	int		pid_child_one;
 	int		pid_child_two;
+	int		pid_child_middle;
+	int 	pid_child_last;
 
 	int		status;
 	char	*temp_path;
+	int		num_cmd;
 }				t_data;
 
 // ft_childs.c
 // ft_child_one.c realiza la ejecución del primer hijo.
 void	ft_child_one(t_data *data, char *file, char *command, char **env);
+// ft_child_middle.c realiza la ejecución de los hijos intermedios.
+void	ft_child_middle(t_data *data, char *command, char **env);
 // ft_child_two.c realiza la ejecución del segundo hijo.
 void	ft_child_two(t_data *data, char *file, char *command, char **env);
+// ft_child_last.c realiza la ejecución del último hijo.
+void	ft_child_last(t_data *data, char *file, char *command, char **env);
 
 // ft_path.c
 // ft_search_valid_path.c busca la ruta válida del comando.

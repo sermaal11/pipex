@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 22:58:38 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/22 23:31:02 by sergio           ###   ########.fr       */
+/*   Created: 2024/02/23 14:20:39 by sergio            #+#    #+#             */
+/*   Updated: 2024/02/23 14:49:34 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	ft_close_n_wait(t_data *data)
 {
 	int	status;
 	
-	close(data->pipe_fd[0]);
-	close(data->pipe_fd[1]);
+	close(data->pipe_fd[R]);
+	close(data->pipe_fd[W]);
 	waitpid(data->pid_child_one, NULL, 0);
 	waitpid(data->pid_child_two, &status, 0);
 	return (status);
