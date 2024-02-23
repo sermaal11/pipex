@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:44:21 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 17:23:52 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:31:45 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_search_valid_path(char *command, t_data *d)
 	int		i;
 
 	d->matrix_cmd = ft_split(command, ' ');
-	if (access(*d->matrix_cmd, X_OK) == 0 && **d->matrix_cmd == '/')
+	if (access(*d->matrix_cmd, X_OK) == 0 && ft_strrchr(*d->matrix_cmd, '/'))
 	{
 		d->valid_path = ft_strdup(d->matrix_cmd[0]);
 		return ;
