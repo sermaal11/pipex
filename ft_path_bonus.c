@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_path_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:44:21 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 15:47:14 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/23 17:23:52 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_search_valid_path(char *command, t_data *d)
 {
 	int		i;
 
-	printf("%s\n", command);
 	d->matrix_cmd = ft_split(command, ' ');
 	if (access(*d->matrix_cmd, X_OK) == 0 && **d->matrix_cmd == '/')
 	{

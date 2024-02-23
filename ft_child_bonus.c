@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_child_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:40:06 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 16:29:02 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/23 17:14:18 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,20 @@ void	ft_child_last(t_data *data, char *file, char *command, char **env)
 	}
 	else if (data->pid_child_last < 0)
 		ft_error("Error: fork not created", 1);
+}
+
+void ft_foock(t_data *data, int argc, char **argv, char **env)
+{
+	ft_child_one(data, argv[1], argv[2], env);
+	data->index_pid++;
+	data->tmp_fd = data->pipe_fd[R];
+	while (data->num_cmd_middle != 0)
+	{
+		ft_pipe(data);
+		ft_child_middle(data, argv[data->index_cmd_middle++], env);
+		data->index_pid++;
+		data->tmp_fd = data->pipe_fd[R];
+		data->num_cmd_middle--;
+	}
+	ft_child_last(data, argv[argc - 1], argv[argc - 2], env);
 }

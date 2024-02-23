@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:20:39 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 16:30:04 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/23 16:57:08 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_free(t_data *data)
 	free(data->matrix_cmd);
 	ft_free_matrix(data->matrix_path);
 	free(data->matrix_path);
+	free(data->pid_childs);
 }
 
 /*
