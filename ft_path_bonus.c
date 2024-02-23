@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:44:21 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 15:42:06 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/23 15:47:14 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_search_valid_path(char *command, t_data *d)
 {
 	int		i;
 
+	printf("%s\n", command);
 	d->matrix_cmd = ft_split(command, ' ');
 	if (access(*d->matrix_cmd, X_OK) == 0 && **d->matrix_cmd == '/')
 	{
@@ -61,7 +62,7 @@ void	ft_search_valid_path(char *command, t_data *d)
 		return ;
 	}
 	if (access(*d->matrix_cmd, X_OK) != 0 && ft_strrchr(*d->matrix_cmd, '/'))
-		ft_error(" puto Error", 127);
+		ft_error("Error", 127);
 	d->temp_path = ft_strjoin("/", d->matrix_cmd[0]);
 	i = 0;
 	while (d->matrix_path[i])

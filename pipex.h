@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 15:01:58 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/23 16:28:05 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ typedef struct s_data
 
 	int		pid_child_one;
 	int		pid_child_two;
-	int		pid_child_middle;
-	int 	pid_child_last;
+	int		pid_child_last;
+	int		*pid_childs;
 
 	int		status;
 	char	*temp_path;
-	int		num_cmd;
+	int		num_cmd_middle;
+	int		index_pid;
+
 }				t_data;
 
 // ft_childs.c

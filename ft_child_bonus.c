@@ -6,7 +6,7 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:40:06 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 15:09:26 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/23 16:29:02 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_child_one(t_data *data, char *file, char *command, char **env)
 {
-	data->pid_child_one = fork();
-	if (data->pid_child_one == 0)
+	data->pid_childs[data->index_pid] = fork();
+	if (data->pid_childs[data->index_pid] == 0)
 	{
 		ft_search_valid_path(command, data);
 		data->infile_fd = open(file, O_RDONLY);
@@ -29,14 +29,14 @@ void	ft_child_one(t_data *data, char *file, char *command, char **env)
 		ft_free(data);
 		exit(127);
 	}
-	else if (data->pid_child_one < 0)
+	else if (data->pid_childs[data->index_pid] < 0)
 		ft_error("Error: fork not created", 1);
 }
 
 void	ft_child_middle(t_data *data, char *command, char **env)
 {
-	data->pid_child_middle = fork();
-	if (data->pid_child_middle == 0)
+	data->pid_childs[data->index_pid] = fork();
+	if (data->pid_childs[data->index_pid] == 0)
 	{
 		ft_search_valid_path(command, data);
 		dup2(data->tmp_fd, STDIN_FILENO);
@@ -48,7 +48,7 @@ void	ft_child_middle(t_data *data, char *command, char **env)
 		ft_free(data);
 		exit(127);
 	}
-	else if (data->pid_child_middle < 0)
+	else if (data->pid_childs[data->index_pid] < 0)
 		ft_error("Error: fork not created", 1);
 }
 
