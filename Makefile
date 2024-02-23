@@ -6,7 +6,7 @@
 #    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/02/23 16:55:26 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/02/23 19:31:03 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,7 @@ init:
 	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡Proyecto inicializado, ya puedes empezar a completar el Makefile!!! (⌐■_■)$(RESET)"
 
 # La regla git agrega, hace commit y hace push
-git: fclean
+git: 
 	git add .
 	git status
 	@read -p "Quieres continuar? [y/n]: " answer; \

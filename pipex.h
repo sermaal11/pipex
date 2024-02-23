@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 17:13:41 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:45:14 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct s_data
 	char	*matrix_joined_path;
 	char	**matrix_path;
 	char	**matrix_cmd;
-	
+
 	char	*valid_path;
 	char	*temp_path;
-	
+
 	int		outfile_fd;
 	int		pipe_fd[2];
 	int		infile_fd;
@@ -61,7 +61,7 @@ void	ft_child_middle(t_data *data, char *command, char **env);
 // ft_child_last realiza la ejecución del último hijo.
 void	ft_child_last(t_data *data, char *file, char *command, char **env);
 // ft_foock realiza la funcion de crear todos los hijos necesarios
-void ft_foock(t_data *data, int argc, char **argv, char **env);
+void	ft_foock(t_data *data, int argc, char **argv, char **env);
 
 // ft_path.c
 // ft_search_valid_path busca la ruta válida del comando.

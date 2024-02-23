@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:20:39 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 16:57:08 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:17:04 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ En la función ft_close_n_wait hacemos lo siguiente:
 int	ft_close_n_wait(t_data *data)
 {
 	int	status;
-	int i;
-	
+	int	i;
+
 	i = 0;
 	close(data->pipe_fd[R]);
 	close(data->pipe_fd[W]);
