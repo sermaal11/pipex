@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:49 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 19:20:15 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:48:07 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void static	ft_multipe_pipes(t_data *data, int argc, char **argv, char **env )
 	data->num_cmd_middle = argc - 5;
 	data->pid_childs = (int *)malloc(data->num_cmd_middle + 2 * sizeof(int));
 	ft_split_path(data, env);
-	ft_pipe(data);
 	ft_foock(data, argc, argv, env);
 	data->status = ft_close_n_wait(data);
+	ft_free(data);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -38,9 +38,6 @@ int	main(int argc, char **argv, char **env)
 		// crear funcion ft_here_doc()
 	}
 	else
-	{
 		ft_multipe_pipes(&data, argc, argv, env);
-		ft_free(&data);
-	}
 	return (WEXITSTATUS(data.status));
 }

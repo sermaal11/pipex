@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_child_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:40:06 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 19:29:09 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:47:16 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_foock(t_data *data, int argc, char **argv, char **env)
 {
-	close(data->pipe_fd[W]);
 	ft_child_one(data, argv[1], argv[2], env);
 	data->index_pid++;
 	data->tmp_fd = data->pipe_fd[R];
+	close(data->pipe_fd[W]);
 	while (data->num_cmd_middle != 0)
 	{
 		ft_pipe(data);
@@ -32,6 +32,8 @@ void	ft_foock(t_data *data, int argc, char **argv, char **env)
 
 void	ft_child_one(t_data *data, char *file, char *command, char **env)
 {
+	if (pipe(data->pipe_fd) == -1)
+		perror("Error: pipe not created");
 	data->pid_childs[data->index_pid] = fork();
 	if (data->pid_childs[data->index_pid] == 0)
 	{
