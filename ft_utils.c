@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:10:45 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/23 18:58:05 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:57:37 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ En la función ft_pipe hacemos lo siguiente:
 
 void	ft_pipe(t_data *data)
 {
-	pipe(data->pipe_fd);
 	if (pipe(data->pipe_fd) == -1)
 		perror("Error: pipe not created\n");
 }

@@ -6,11 +6,26 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:49 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/24 18:48:07 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/24 19:06:06 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+/*
+En la función ft_multipe_pipes hacemos lo siguiente:
+1.	Recibimos un puntero a una estructura de tipo t_data llamada data, un entero
+	llamado argc, un puntero a un puntero de tipo char llamado argv y un puntero
+	a un puntero de tipo char llamado env.
+2.	Reservamos memoria para la estructura data.
+3.	Inicializamos la estructura data con 0.
+4.	Asignamos a la estructura data el número de comandos intermedios.
+5.	Reservamos memoria para la variable pid_childs.
+6.	Llamamos a la función ft_split_path con los parámetros data y env.
+7.	Llamamos a la función ft_foock con los parámetros data, argc, argv y env.
+8.	Asignamos a la estructura data el valor de la función ft_close_n_wait.
+9.	Liberamos la memoria de la estructura data.
+*/
 
 void static	ft_multipe_pipes(t_data *data, int argc, char **argv, char **env )
 {
