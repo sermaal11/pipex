@@ -6,11 +6,31 @@
 /*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:49 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/24 19:06:06 by sergio           ###   ########.fr       */
+/*   Updated: 2024/02/29 15:27:56 by sergio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void static	ft_here_doc(t_data *data, int argc, char **argv)
+{
+	if (argc < 6)
+		ft_error("Error: arguments", 1);
+	if (pipe(data->pipe_fd) == -1)
+		ft_error("Error: pipe not created", 1);
+	data->infile_fd = open(argv[1], O_RDONLY ,0644);
+	data->pid_reader = fork();
+	if (data->pid_reader == 0)
+	{
+		close(data->pipe_fd[R]);
+		while(ft_gnl(0))
+		{
+			
+		}
+	}
+	else if (data->pid_reader < 0)
+		ft_error("Error: fork not created", 1);
+}
 
 /*
 En la función ft_multipe_pipes hacemos lo siguiente:
