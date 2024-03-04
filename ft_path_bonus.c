@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:44:21 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/23 18:58:26 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:32:54 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ En la función ft_search_valid_path hacemos lo siguiente:
 void	ft_search_valid_path(char *command, t_data *d)
 {
 	int		i;
+	char	*barra;
 
 	d->matrix_cmd = ft_split(command, ' ');
 	if (access(*d->matrix_cmd, X_OK) == 0 && ft_strrchr(*d->matrix_cmd, '/'))
@@ -62,7 +63,8 @@ void	ft_search_valid_path(char *command, t_data *d)
 	}
 	if (access(*d->matrix_cmd, X_OK) != 0 && ft_strrchr(*d->matrix_cmd, '/'))
 		ft_error("Error", 127);
-	d->temp_path = ft_strjoin("/", d->matrix_cmd[0]);
+	barra = ft_strdup("/");
+	d->temp_path = ft_strjoin(barra, d->matrix_cmd[0]);
 	i = 0;
 	while (d->matrix_path[i])
 	{
@@ -70,11 +72,9 @@ void	ft_search_valid_path(char *command, t_data *d)
 		if (access(d->matrix_joined_path, X_OK) == 0)
 		{
 			d->valid_path = d->matrix_joined_path;
-			free(d->temp_path);
-			return ;
+			return (free(d->temp_path));
 		}
 		free(d->matrix_joined_path);
 	}
-	ft_error("Command not found", 1);
-	free(d->temp_path);
+	(ft_error("Command not found", 1), free(d->temp_path));
 }

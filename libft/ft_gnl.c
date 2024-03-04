@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:28:59 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/04 16:41:05 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:47:04 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*buffer_remainder(char *buff)
 		i++;
 	if (buff[i] == '\n')
 		i++;
-	buff_rema = (char *)malloc((buff_len) * sizeof(char));
+	buff_rema = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (buff_rema == NULL)
 	{
 		free(buff);
@@ -136,9 +136,7 @@ char	*ft_gnl(int fd)
 	line = take_line(buff);
 	buff = buffer_remainder(buff);
 	if (!buff)
-	{
 		free(buff);
-		buff = NULL;
-	}
 	return (line);
 }
+
