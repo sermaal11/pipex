@@ -6,12 +6,11 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:49 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/04 17:27:33 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:31:50 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
 
 /*
 En la función ft_multipe_pipes hacemos lo siguiente:
