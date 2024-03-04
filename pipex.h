@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 21:23:27 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/29 15:04:00 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/04 16:56:36 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	int		num_cmd_middle;
 	int		index_pid;
 	int		index_cmd_middle;
+	int		here_doc;
 
 }				t_data;
 

@@ -3,34 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:49 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/29 15:39:04 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:27:33 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void static	ft_here_doc(t_data *data, int argc, char **argv)
-{
-	if (argc < 6)
-		ft_error("Error: arguments", 1);
-	if (pipe(data->pipe_fd) == -1)
-		ft_error("Error: pipe not created", 1);
-	data->infile_fd = open(argv[1], O_RDWR | O_CREAT ,0644);
-	data->pid_reader = fork();
-	if (data->pid_reader == 0)
-	{
-		close(data->pipe_fd[R]);
-		while(ft_gnl(0))
-		{
-			
-		}
-	}
-	else if (data->pid_reader < 0)
-		ft_error("Error: fork not created", 1);
-}
 
 /*
 En la función ft_multipe_pipes hacemos lo siguiente:
@@ -49,13 +30,32 @@ En la función ft_multipe_pipes hacemos lo siguiente:
 
 void static	ft_multipe_pipes(t_data *data, int argc, char **argv, char **env )
 {
-	ft_memset(data, 0, sizeof(data));
 	data->num_cmd_middle = argc - 5;
 	data->pid_childs = (int *)malloc(data->num_cmd_middle + 2 * sizeof(int));
 	ft_split_path(data, env);
-	ft_foock(data, argc, argv, env);
+	ft_foock(data, argc + 1, argv, env);
 	data->status = ft_close_n_wait(data);
 	ft_free(data);
+}
+void static	ft_here_doc(t_data *data, int argc, char **argv, char **env)
+{
+	char	*line;
+	int		tmp_fd;
+	
+	if (argc < 6)
+		ft_error("Error: arguments", 1);
+	data->here_doc = 1;
+	tmp_fd = open(".here_doc", O_WRONLY | O_CREAT ,0644);
+	while(1)
+	{
+		line = ft_gnl(0);
+		if ((ft_strlen(line) - 1) == ft_strlen(argv[2])
+			&& ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0)
+			break;
+		if (write(tmp_fd, line, ft_strlen(line)) == -1)
+			ft_error("Write error", 1);
+	}
+	ft_multipe_pipes(data, argc - 1, argv, env);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -64,15 +64,15 @@ int	main(int argc, char **argv, char **env)
 
 	if (argc < 5)
 		ft_error("Error: arguments", 1);
+	ft_memset(&data, 0, sizeof(data));
 	data.index_pid = 0;
 	data.index_cmd_middle = 3;
 	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 	{
-		ft_memset(&data, 0, sizeof(data));
-		printf("Entro en el here_doc");
-		// crear funcion ft_here_doc()
+		ft_here_doc(&data, argc, argv, env);
+		unlink(".here_doc");
 	}
 	else
-		ft_multipe_pipes(&data, argc, argv, env);
+		ft_multipe_pipes(&data, argc - 1, argv, env);
 	return (WEXITSTATUS(data.status));
 }

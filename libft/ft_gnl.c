@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:28:59 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/09 14:13:36 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/04 16:41:05 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static char	*buffer_remainder(char *buff)
 {

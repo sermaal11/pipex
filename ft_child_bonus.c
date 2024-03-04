@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_child_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergio <sergio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:40:06 by sergio            #+#    #+#             */
-/*   Updated: 2024/02/24 19:03:21 by sergio           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:16:02 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ En la función ft_foock hacemos lo siguiente:
 
 void	ft_foock(t_data *data, int argc, char **argv, char **env)
 {
-	ft_child_one(data, argv[1], argv[2], env);
+	if (data->here_doc == 1)
+		ft_child_one(data, ".here_doc", argv[3], env);
+	else
+		ft_child_one(data, argv[1], argv[2], env);
 	data->index_pid++;
 	data->tmp_fd = data->pipe_fd[R];
 	close(data->pipe_fd[W]);
@@ -133,13 +136,13 @@ En la función ft_child_last hacemos lo siguiente:
 	puntero a un char llamado file, un puntero a un char llamado command y un
 	puntero a un puntero de tipo char llamado env.
 2.	Creamos un hijo con fork.
-3.	Si el hijo se ha creado correctamente, llamamos a la función ft_search_valid_path
-	con los parámetros command y data, abrimos el file en modo lectura y escritura,
-	si no se ha abierto correctamente, llamamos a la función ft_error con los
-	parámetros "Error" y 1, duplicamos el file descriptor en el file descriptor
-	de entrada estándar, duplicamos el file descriptor en el file descriptor de
-	salida estándar, cerramos el file descriptor de salida y cerramos el file
-	descriptor temporal.
+3.	Si el hijo se ha creado correctamente, llamamos a la función 
+	ft_search_valid_path con los parámetros command y data, abrimos el file en 
+	modo lectura y escritura, si no se ha abierto correctamente, llamamos a la 
+	función ft_error con los parámetros "Error" y 1, duplicamos el file 
+	descriptor en el file descriptor de entrada estándar, duplicamos el file 
+	descriptor en el file descriptor de salida estándar, cerramos el file 
+	descriptor de salida y cerramos el file descriptor temporal.
 4.	Si el hijo no se ha creado correctamente, llamamos a la función ft_error con
 	los parámetros "Error: fork not created" y 1.
 */
