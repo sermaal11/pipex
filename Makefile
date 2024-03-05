@@ -6,7 +6,7 @@
 #    By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 21:22:01 by sergio            #+#    #+#              #
-#    Updated: 2024/03/04 18:07:41 by smarin-a         ###   ########.fr        #
+#    Updated: 2024/03/05 12:39:47 by smarin-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,7 +128,7 @@ fclean: clean libft_fclean
 	@echo "$(GREEN)¡$(NAME) ha sido eliminado!$(RESET)"
 
 # La regla re elimina todo y compila nuevamente
-re: fclean all bonus
+re: fclean all
 
 # La regla init inicializa el proyecto
 init:
