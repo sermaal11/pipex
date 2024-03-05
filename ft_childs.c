@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:49:27 by smarin-a          #+#    #+#             */
-/*   Updated: 2024/02/22 17:20:39 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:03:19 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,23 @@ En la función ft_child_one hacemos lo siguiente:
 
 void	ft_child_one(t_data *data, char *file, char *command, char **env)
 {
+	if (pipe(data->pipe_fd) == -1)
+		perror("Error: pipe not created\n");
 	data->pid_child_one = fork();
 	if (data->pid_child_one == 0)
 	{
+		close(data->pipe_fd[R]);
 		ft_search_valid_path(command, data);
 		data->infile_fd = open(file, O_RDONLY);
 		if (data->infile_fd == -1)
+		{
+			close(data->pipe_fd[R]);
 			ft_error("Error", 1);
+		}
 		dup2(data->infile_fd, STDIN_FILENO);
 		dup2(data->pipe_fd[W], STDOUT_FILENO);
 		close(data->infile_fd);
-		close(data->pipe_fd[R]);
+		close(data->pipe_fd[W]);
 		execve(data->valid_path, data->matrix_cmd, env);
 		ft_free(data);
 		exit(127);

@@ -6,7 +6,7 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:49 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/04 21:20:33 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:58:46 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void static	ft_multipe_pipes(t_data *data, int argc, char **argv, char **env )
 	data->num_cmd_middle = argc - 5;
 	if (data->num_cmd_middle < 0)
 		data->num_cmd_middle = 0;
-	data->pid_childs = (int *)malloc(data->num_cmd_middle + 2 * sizeof(int));
+	data->pid_childs = (int *)malloc((data->num_cmd_middle + 2) * sizeof(int));
 	ft_split_path(data, env);
 	ft_foock(data, argc + 1, argv, env);
 	data->status = ft_close_n_wait(data);
@@ -64,11 +64,6 @@ void static	ft_here_doc(t_data *data, int argc, char **argv, char **env)
 	ft_multipe_pipes(data, argc - 1, argv, env);
 }
 
-void leaks(void)
-{
-	system("leaks -q pipex_bonus");
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
@@ -84,6 +79,5 @@ int	main(int argc, char **argv, char **env)
 	}
 	else
 		ft_multipe_pipes(&data, argc - 1, argv, env);
-	atexit(leaks);
 	return (WEXITSTATUS(data.status));
 }
