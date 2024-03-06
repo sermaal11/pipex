@@ -6,20 +6,11 @@
 /*   By: smarin-a <smarin-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:44:21 by sergio            #+#    #+#             */
-/*   Updated: 2024/03/05 11:31:27 by smarin-a         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:44:27 by smarin-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-/*
-En la función ft_split_path hacemos lo siguiente:
-1.	Recibimos un puntero a una estructura de tipo t_data llamada data y un
-	puntero a un puntero de tipo char llamado env.
-2.	Declaramos una variable de tipo entero llamada i e inicializamos en 0.
-3.	Recorremos el puntero env, si encontramos la variable de entorno PATH,
-	almacenamos en la estructura data la variable PATH sin el prefijo "PATH=".
-*/
 
 void	ft_split_path(t_data *data, char **env)
 {
@@ -32,23 +23,6 @@ void	ft_split_path(t_data *data, char **env)
 			data->matrix_path = ft_split(env[i] + 5, ':');
 	}
 }
-
-/*
-En la función ft_search_valid_path hacemos lo siguiente:
-1.	Recibimos un puntero a un char llamado command y un puntero a una estructura
-	de tipo t_data llamada data.
-2.	Declaramos una variable de tipo entero llamada i.
-3.	Declaramos un puntero a un char llamado temp_path.
-4.	Asignamos a la estructura data la matriz de comandos que se obtiene de
-	separar el comando por espacios.
-5.	Comprobamos si el comando se encuentra en el directorio actual, si es así,
-	lo asignamos a la estructura data y retornamos.
-6.	Concatenamos el comando con el prefijo "/" y lo asignamos a la variable
-	temp_path.
-7.	Recorremos la matriz de rutas, si encontramos una ruta válida, la asignamos
-	a la estructura data y retornamos.
-8.	Liberamos la variable temp_path.
-*/
 
 void	ft_search_valid_path(char *command, t_data *d)
 {
